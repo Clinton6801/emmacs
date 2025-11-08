@@ -7,7 +7,7 @@ import { ScheduleConfig , CapacityLimit } from '../types/schedule';
 const mockCake: CustomizableProduct = {
     _id: "cake_choc101",
     name: "Signature Chocolate Delight",
-    slug: "cakes",
+    slug: "signature-chocolate-delight",
     description: "Rich, moist chocolate cake with your choice of filling and inscription.",
     basePrice: 25.00,
     category: "Cakes",
@@ -30,7 +30,7 @@ const mockCake: CustomizableProduct = {
 const mockCatfish: StandardProduct = {
     _id: "catfish_fresh202",
     name: "Premium Whole Catfish (Fresh)",
-    slug: "catfish",
+    slug: "fresh-catfish",
     description: "Locally sourced, fresh Catfish. Perfect for grilling or soup.",
     basePrice: 12.50,
     category: "Catfish",
@@ -49,7 +49,15 @@ const mockCatfish: StandardProduct = {
 
 // Mock function to simulate fetching data based on the slug
 export async function getProductBySlug(slug: string) {
-    if (slug === 'cakes') {
+    if (slug === 'signature-chocolate-delight') {
+        return mockCake;
+    }
+    if (slug === 'fresh-catfish') {
+        return mockCatfish;
+    }
+
+    // Handle the old "cakes" and "catfish" slugs as redirects for a clean future transition
+    if (slug === 'cakes') { // Keep this temporarily for the link you clicked
         return mockCake;
     }
     if (slug === 'catfish') {
@@ -62,8 +70,6 @@ export async function getProductBySlug(slug: string) {
 // src/lib/data.ts (Updated for Scheduling Mock)
 
 // ... existing product mocks ...
-
-
 
 // Mock Capacity Data
 const mockCapacity: CapacityLimit[] = [
