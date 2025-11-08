@@ -14,17 +14,23 @@ interface ProductDetailPageProps {
 
 // This is a Server Component, excellent for fast data fetching (SSG/SSR)
 const ProductDetailPage: React.FC<ProductDetailPageProps> = async ({ params }) => {
-    const product = await getProductBySlug(params.slug);
+    // 1. Extract the slug early (Next.js is happy with this synchronous destructuring)
+    const slug = params.slug; 
+
+    // 2. Use the extracted 'slug' for data fetching
+    const product = await getProductBySlug(slug); // Data fetching uses the extracted variable
 
     if (!product) {
-        // Handle 404 Not Found
+        // 3. Use the extracted 'slug' in the JSX
         return (
             <div className="text-center py-20">
                 <h1 className="text-4xl font-bold text-red-600">404 - Product Not Found</h1>
-                <p className="text-gray-600 mt-3">The product "{params.slug}" does not exist.</p>
+                {/* FIX: Use the extracted 'slug' variable instead of params.slug */}
+                <p className="text-gray-600 mt-3">The product "{slug}" does not exist.</p> 
             </div>
         );
     }
+        
 
     const { name, description, imageUrls } = product as BaseProduct;
     

@@ -7,7 +7,7 @@ import { ScheduleConfig , CapacityLimit } from '../types/schedule';
 const mockCake: CustomizableProduct = {
     _id: "cake_choc101",
     name: "Signature Chocolate Delight",
-    slug: "signature-chocolate-delight",
+    slug: "cakes",
     description: "Rich, moist chocolate cake with your choice of filling and inscription.",
     basePrice: 25.00,
     category: "Cakes",
@@ -30,7 +30,7 @@ const mockCake: CustomizableProduct = {
 const mockCatfish: StandardProduct = {
     _id: "catfish_fresh202",
     name: "Premium Whole Catfish (Fresh)",
-    slug: "fresh-catfish",
+    slug: "catfish",
     description: "Locally sourced, fresh Catfish. Perfect for grilling or soup.",
     basePrice: 12.50,
     category: "Catfish",
@@ -49,10 +49,10 @@ const mockCatfish: StandardProduct = {
 
 // Mock function to simulate fetching data based on the slug
 export async function getProductBySlug(slug: string) {
-    if (slug === 'signature-chocolate-delight') {
+    if (slug === 'cakes') {
         return mockCake;
     }
-    if (slug === 'fresh-catfish') {
+    if (slug === 'catfish') {
         return mockCatfish;
     }
     return null; // Return null if product not found
